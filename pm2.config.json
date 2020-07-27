@@ -1,6 +1,6 @@
 {
     "apps": [{
-        "name": "GibaraBot",
+        "name": "gibara_bot",
         "script": "src/gibara.py",
         "args": [""],
         "wait_ready": true,
