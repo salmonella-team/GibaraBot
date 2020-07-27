@@ -15,6 +15,6 @@ async def make2ch(ctx, *args):
     if len(args) < 2:
         new_channel = await ctx.guild.create_text_channel(name=args[0], category=category)
     else:
-        await ctx.send("引数が不正")
+        await ctx.send("引数が不正です")
 
 bot.run(GIBARA_TOKEN)
