@@ -25,7 +25,7 @@ async def on_ready():
 
 @bot.command()
 async def find_voice(ctx):
-    channel = discord.utils.get(
+    channel = commands.utils.get(
         bot.get_all_channels(), id=ROOM1)
     print(len(channel.members))
 
@@ -45,6 +45,24 @@ async def ts(ctx, arg):
         tts.save('a.mp3')
         vc.play(discord.FFmpegPCMAudio(
             'a.mp3'))
+
+@bot.event
+async def on_message(message):
+    if message.author.bot:
+        return
+    await bot.process_commands(message)
+    global vc
+    try:
+        vc
+    except NameError:
+        vc = await message.author.voice.channel.connect()
+        print("ボイスチャンネルに入りま～す")
+    finally:
+        tts = gTTS(text=message.content, lang='ja')
+        tts.save('a.mp3')
+        vc.play(discord.FFmpegPCMAudio(
+            'a.mp3'))
+
 
 @bot.command()
 async def hlp(ctx):
