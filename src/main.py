@@ -14,7 +14,7 @@ GUILD = setting.GUILD
 JIHOU = setting.JIHOU
 ROOM1 = setting.ROOM1
 help_mes = message.help_mes
-bot = commands.Bot(command_prefix="/test ")
+bot = commands.Bot(command_prefix="/gibara ")
 
 global vc
 
