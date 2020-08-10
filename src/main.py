@@ -50,18 +50,21 @@ async def ts(ctx, arg):
 async def on_message(message):
     if message.author.bot:
         return
-    await bot.process_commands(message)
-    global vc
-    try:
-        vc
-    except NameError:
-        vc = await message.author.voice.channel.connect()
-        print("ボイスチャンネルに入りま～す")
-    finally:
-        tts = gTTS(text=message.content, lang='ja')
-        tts.save('a.mp3')
-        vc.play(discord.FFmpegPCMAudio(
-            'a.mp3'))
+    if message.channel.id == int(ROOM1):
+        await bot.process_commands(message)
+        global vc
+        try:
+            vc
+        except NameError:
+            vc = await message.author.voice.channel.connect()
+            print("ボイスチャンネルに入りま～す")
+        finally:
+            tts = gTTS(text=message.content, lang='ja')
+            tts.save('a.mp3')
+            vc.play(discord.FFmpegPCMAudio(
+                'a.mp3'))
+    else:
+        return
 
 
 @bot.command()
